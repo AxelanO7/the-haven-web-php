@@ -24,28 +24,7 @@
         public function index()
         {
             $data['page'] = "Departemen";
-			$data['listag'] = $this->Departemen_model->tampilag();
-            $data['listeng'] = $this->Departemen_model->tampileng();
-            $data['listfbk'] = $this->Departemen_model->tampilfbk();
-            $data['listfbs'] = $this->Departemen_model->tampilfbs();
-            $data['listfo'] = $this->Departemen_model->tampilfo();
-            $data['listhk'] = $this->Departemen_model->tampilhk();
-            $data['listhc'] = $this->Departemen_model->tampilhc();
-            $data['listsm'] = $this->Departemen_model->tampilsm();
-            $data['listx1'] = $this->Departemen_model->tampilx1();
-            $data['listx2'] = $this->Departemen_model->tampilx2();
-            $data['listx3'] = $this->Departemen_model->tampilx3();
-            $data['hitungag'] = $this->Departemen_model->hitungag();
-            $data['hitungeng'] = $this->Departemen_model->hitungeng();
-            $data['hitungfbk'] = $this->Departemen_model->hitungfbk();
-            $data['hitungfbs'] = $this->Departemen_model->hitungfbs();
-            $data['hitungfo'] = $this->Departemen_model->hitungfo();
-            $data['hitunghk'] = $this->Departemen_model->hitunghk();
-            $data['hitunghc'] = $this->Departemen_model->hitunghc();
-            $data['hitungsm'] = $this->Departemen_model->hitungsm();
-            $data['hitungx1'] = $this->Departemen_model->hitungx1();
-            $data['hitungx2'] = $this->Departemen_model->hitungx2();
-            $data['hitungx3'] = $this->Departemen_model->hitungx3();
+            $data['listData'] = $this->Departemen_model->getLengthEmployeeByDepartment();
             $this->load->view('Departemen/index', $data);
         }
         
