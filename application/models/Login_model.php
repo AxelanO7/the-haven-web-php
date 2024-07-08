@@ -47,5 +47,34 @@
             $query = $this->db->get('penilaian');
             return $query->num_rows();
         }
-    
+
+
+        public function get_5_best_employee() {
+            $highest = [];
+            $karyawans = $this->db->get('karyawan')->result();
+            foreach ($karyawans as $karyawan) {
+                $id_karyawan = $karyawan->id_karyawan;
+                $kriterias = $this->db->get('kriteria')->result();
+                foreach ($kriterias as $kriteria) {
+                    $id_kriteria = $kriteria->id_kriteria;
+                    // $himpunans = $this->Perhitungan_model->get_himpunan($id_kriteria);
+                    $himpunans = $this->db->query("SELECT * FROM subkriteria_fuzzy WHERE id_kriteria='$id_kriteria';")->result();
+                    foreach ($himpunans as $himpunan){
+                        $id_subkriteria_fuzzy = $himpunan->id_subkriteria_fuzzy;
+                        // $hasil = $this->Perhitungan_model->get_hasil($id_karyawan,$id_kriteria);
+                        $hasil = $this->db->query("SELECT * FROM hasil WHERE id_karyawan='$id_karyawan' AND id_kriteria='$id_kriteria';")->row();
+                        if($hasil->id_subkriteria_fuzzy == $himpunan->id_subkriteria_fuzzy){
+                            if (array_key_exists($karyawan->nama_karyawan, $highest)) {
+                                $highest[$karyawan->nama_karyawan] += $hasil->f;
+                            } else {
+                                $highest[$karyawan->nama_karyawan] = $hasil->f;
+                            }
+                        }
+                    }
+                }
+            }
+            arsort($highest);
+            $highest = array_slice($highest, 0, 5);
+            return $highest;
+        }
     }

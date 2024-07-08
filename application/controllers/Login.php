@@ -50,6 +50,7 @@ class Login extends CI_Controller {
 
     public function home()
     { 
+        $data['highest'] = $this->Login_model->get_5_best_employee();
         $data['page'] = "Dashboard";
         $data['total_dept'] = $this->Login_model->hitung_dept();
         $data['total_karyawan'] = $this->Login_model->hitung_karyawan();
