@@ -93,6 +93,7 @@
             $data['page'] = "Appraisal";
             $data['Appraisal'] = $this->Appraisal_model->lihat($id_karyawan);
             $data['karyawans']= $this->Appraisal_model->get_karyawan();
+            $data['id_appraisal'] = $this->Appraisal_model->get_id_appraisal($id_karyawan);
             $data['id_karyawan'] = $this->input->post('id_karyawan');
             $data['tgl_pengisian'] = $this->input->post('tgl_pengisian');
             $data['progress'] = $this->input->post('progress');
@@ -104,8 +105,7 @@
             $data['tobe_improved'] = $this->input->post('tobe_improved');
             $data['training_course'] = $this->input->post('training_course');
             $data['comment'] = $this->input->post('comment');
-            $data['list'] = $this->Appraisal_model->tampil();
-            
+            $data['list'] = $this->Appraisal_model->tampil();            
             $this->load->view('Appraisal/lihat', $data);
         }
 
