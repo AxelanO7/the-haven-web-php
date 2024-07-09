@@ -37,7 +37,6 @@ class Hasil extends CI_Controller
         usort($alternatifs, function ($a, $b) {
             return $b->total <=> $a->total;
         });
-        echo "<script>console.log('Debug Objects: " . json_encode($alternatifs) . "' );</script>";
         $data = [
             'page' => "Hasil",
             'variabels' => $variabels,
