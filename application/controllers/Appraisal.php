@@ -34,7 +34,14 @@
             $data['listhodhc'] = $this->Appraisal_model->tampilhodhc();
             $data['listhodsm'] = $this->Appraisal_model->tampilhodsm();
             $data['liststaff'] = $this->Appraisal_model->tampilstaff();
-            // echo $username;
+            $staff = [];
+            $username = $this->session->userdata('username');
+            foreach ($data['liststaff'] as $key) {
+                if ($key->kode_karyawan == $username) {
+                    $staff[] = $key;
+                }
+            }
+            $data['staff'] = $staff;
             $this->load->view('Appraisal/index', $data);
         }
         
@@ -141,7 +148,7 @@
     
         public function destroy($id_Appraisal)
         {
-            $this->Appraisal_model->delete($id_appraisal);
+            $this->Appraisal_model->delete($id_Appraisal);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus!</div>');
 			redirect('Appraisal');
         }

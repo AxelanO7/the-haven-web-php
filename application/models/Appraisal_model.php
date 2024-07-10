@@ -84,9 +84,10 @@ class Appraisal_model extends CI_Model
         $this->db->from('karyawan');
         $this->db->join('appraisal', 'karyawan.id_karyawan = appraisal.id_karyawan');
         $this->db->join('user', 'karyawan.kode_karyawan = user.username');
-        $this->db->where('karyawan.kode_karyawan', 'user.username');
+        $this->db->where('karyawan.kode_karyawan = user.username');
+        // $this->db->where('karyawan.kode_karyawan', 'user.username');
         $query = $this->db->get();
-        return $query->result_array();
+        return $query->result();
     }
 
     public function insert($data = [])
@@ -137,7 +138,8 @@ class Appraisal_model extends CI_Model
         $this->db->delete('appraisal');
     }
 
-    public function get_id_appraisal($id_karyawan) {
+    public function get_id_appraisal($id_karyawan)
+    {
         $query = $this->db->query("SELECT id_appraisal FROM appraisal WHERE id_karyawan='$id_karyawan'");
         return $query->row();
     }
