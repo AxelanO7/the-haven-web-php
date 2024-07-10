@@ -474,7 +474,8 @@ $stmt5 = json_encode($stmt4, true);
                             <div class="col mr-2">
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     <a href="<?= base_url('Appraisal'); ?>" class="text-secondary text-decoration-none">
-                                        <label style="font-size: 38px"><?php echo $total_appr; ?></label><br>
+                                        <!-- <label style="font-size: 38px"><?php echo $total_appr; ?></label><br> -->
+                                        <label style="font-size: 38px">1</label><br>
                                         <label class="mt-3">Data Appraisal<br></label>
                                     </a>
                                 </div>
