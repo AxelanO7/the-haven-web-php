@@ -52,5 +52,74 @@
             $query = $this->db->query("TRUNCATE TABLE hasil;");
 			return $query;
         }
+
+        public function get_key($key){
+            // Job Knowledge, 
+			// Quality of Work,
+			// Consistency of Work,
+			// Stability,
+			// Communication,
+			// Diplomacy and Manners,
+			// Judgement,
+			// Salesmanship,
+			// Customer Relations,
+			// Leadership Skills,
+			// Attitude Toward Supervisors,
+			// Attitude Toward Co-Workers,
+			// Initiative,
+			// Attendance,
+			// Punctuality
+
+            switch ($key) {
+                case 'Job Knowledge':
+                    return 'JK';
+                    break;
+                case 'Quality of Work':
+                    return 'QW';
+                    break;
+                case 'Consistency of Work':
+                    return 'CW';
+                    break;
+                case 'Stability':
+                    return 'S';
+                    break;
+                case 'Communication':
+                    return 'C';
+                    break;
+                case 'Diplomacy and Manners':
+                    return 'DM';
+                    break;
+                case 'Judgement':
+                    return 'J';
+                    break;
+                case 'Salesmanship':
+                    return 'SS';
+                    break;
+                case 'Customer Relations':
+                    return 'CR';
+                    break;
+                case 'Leadership Skills':
+                    return 'LS';
+                    break;
+                case 'Attitude Toward Supervisors':
+                    return 'ATS';
+                    break;
+                case 'Attitude Toward Co-Workers':
+                    return 'ATC';
+                    break;
+                case 'Initiative':
+                    return 'I';
+                    break;
+                case 'Attendance':
+                    return 'A';
+                    break;
+                case 'Punctuality':
+                    return 'P';
+                    break;
+                default:
+                    return '-';
+                    break;
+            }
+        }
     }
     
