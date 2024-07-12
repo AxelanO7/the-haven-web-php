@@ -158,6 +158,89 @@ if (isset($_POST['hitung'])) {
 		</div>
 
 		<div class="card-body">
+			<!-- table with courasel -->
+			<!-- <div class="table-responsive">
+				<div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<?php
+						$no = 0;
+						foreach ($variabels as $variabel) {
+						?>
+							<li data-target="#carouselExampleIndicators1" data-slide-to="<?= $no; ?>" class="<?= $no == 0 ? 'active' : ''; ?>"></li>
+						<?php
+							$no++;
+						}
+						?>
+					</ol>
+					<div class="carousel-inner">
+						<?php
+						$no = 0;
+						foreach ($variabels as $variabel) {
+						?>
+							<div class="carousel-item <?= $no == 0 ? 'active' : ''; ?>">
+								<table class="table table-bordered" width="100%" cellspacing="0">
+									<thead class="bg-haven text-white" style="background-color: #8D9A66">
+										<tr align="center">
+											<th width="5%" rowspan="2">No</th>
+											<th>Nama Karyawan</th>
+											<th><?= $variabel->nama_kriteria ?></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$no = 1;
+										foreach ($alternatifs as $alternatif) :
+											$id_karyawan = $alternatif->id_karyawan;
+										?>
+											<tr align="center">
+												<td><?= $no; ?></td>
+												<td align="left"><?= $alternatif->nama_karyawan ?></td>
+												<td>
+													<?= $matriks_x[$variabel->id_kriteria][$id_karyawan]; ?>
+												</td>
+											</tr>
+										<?php
+											$no++;
+										endforeach;
+										?>
+									</tbody>
+								</table>
+							</div>
+						<?php
+							$no++;
+						}
+						?>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon bg-haven" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+						<span class="carousel-control-next-icon bg-haven" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div> -->
+			<!-- end of table with courasel -->
+
+			<!-- Job Knowledge, 
+			Quality of Work,
+			Consistency of Work,
+			Stability,
+			Communication,
+			Diplomacy and Manners,
+			Judgement,
+			Salesmanship,
+			Customer Relations,
+			Leadership Skills,
+			Attitude Toward Supervisors,
+			Attitude Toward Co-Workers,
+			Initiative,
+			Attendance,
+			Punctuality -->
+			<p>
+				Notes : Job = Job Knowledge, Qua = Quality of Work, Con = Consistency of Work, Sta = Stability, Com = Communication, Dip = Diplomacy and Manners, Jud = Judgement, Sal = Salesmanship, Cus = Customer Relations, Lea = Leadership Skills, Ats = Attitude Toward Supervisors, Atc = Attitude Toward Co-Workers, Ini = Initiative, Att = Attendance, Pun = Punctuality
+			</p>
 			<div class="table-responsive">
 				<table class="table table-bordered" width="100%" cellspacing="0">
 					<thead class="bg-haven text-white" style="background-color: #8D9A66">
@@ -165,7 +248,20 @@ if (isset($_POST['hitung'])) {
 							<th width="5%" rowspan="2">No</th>
 							<th>Nama Karyawan</th>
 							<?php foreach ($variabels as $variabel) : ?>
-								<th><?= $variabel->nama_kriteria ?></th>
+								<th>
+									<?php
+									$key = $variabel->nama_kriteria;
+									if ($key == "Attitude Toward Supervisors") {
+										$key = "Ats";
+									}
+									if ($key == "Attitude Toward Co-Workers") {
+										$key = "Atc";
+									}
+									$short_key = substr($key, 0, 3);
+									echo $short_key;
+									?>
+								</th>
+								<!-- <th><?= $variabel->nama_kriteria ?></th> -->
 							<?php endforeach; ?>
 						</tr>
 					</thead>
@@ -265,6 +361,76 @@ if (isset($_POST['hitung'])) {
 
 		<div class="card-body">
 			<div class="table-responsive">
+				<!-- table with courasel -->
+				<!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<?php
+						$no = 0;
+						foreach ($variabels as $variabel) {
+						?>
+							<li data-target="#carouselExampleIndicators" data-slide-to="<?= $no; ?>" class="<?= $no == 0 ? 'active' : ''; ?>"></li>
+						<?php
+							$no++;
+						}
+						?>
+					</ol>
+					<div class="carousel-inner">
+						<?php
+						$no = 0;
+						foreach ($variabels as $variabel) {
+						?>
+							<div class="carousel-item <?= $no == 0 ? 'active' : ''; ?>">
+								<table class="table table-bordered" width="100%" cellspacing="0">
+									<thead class="bg-haven text-white" style="background-color: #8D9A66">
+										<tr align="center">
+											<th width="5%" rowspan="2">No</th>
+											<th>Nama Karyawan</th>
+											<th><?= $variabel->nama_kriteria ?></th>
+											<th>Fire Strength</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$no = 1;
+										foreach ($alternatifs as $alternatif) :
+											$id_karyawan = $alternatif->id_karyawan;
+										?>
+											<tr align="center">
+												<td><?= $no; ?></td>
+												<td align="left"><?= $alternatif->nama_karyawan ?></td>
+												<td>
+													<?= $matriks_x[$variabel->id_kriteria][$id_karyawan]; ?>
+												</td>
+												<td>
+													<?= $nilai_fs[$id_karyawan] / count($variabels); ?>
+												</td>
+											</tr>
+										<?php
+											$no++;
+										endforeach;
+										?>
+									</tbody>
+								</table>
+							</div>
+						<?php
+							$no++;
+						}
+						?>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon bg-haven" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+						<span class="carousel-control-next-icon bg-haven" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div> -->
+				<!-- end of table with courasel -->
+
+				<p>
+					Notes : Job = Job Knowledge, Qua = Quality of Work, Con = Consistency of Work, Sta = Stability, Com = Communication, Dip = Diplomacy and Manners, Jud = Judgement, Sal = Salesmanship, Cus = Customer Relations, Lea = Leadership Skills, Ats = Attitude Toward Supervisors, Atc = Attitude Toward Co-Workers, Ini = Initiative, Att = Attendance, Pun = Punctuality
+				</p>
 				<table class="table table-bordered" width="100%" cellspacing="0">
 					<thead class="bg-haven text-white" style="background-color: #8D9A66">
 						<tr align="center">
@@ -278,8 +444,20 @@ if (isset($_POST['hitung'])) {
 									if ($_POST['id_subkriteria_fuzzy_' . $id_kriteria] == $himpunan->id_subkriteria_fuzzy) {
 							?>
 										<th class="align-middle">
-											<?= $variabel->nama_kriteria ?><br />
-											<?= $himpunan->nama_subkriteria ?></th>
+											<?php
+											$key = $variabel->nama_kriteria;
+											if ($key == "Attitude Toward Supervisors") {
+												$key = "Ats";
+											}
+											if ($key == "Attitude Toward Co-Workers") {
+												$key = "Atc";
+											}
+											$short_key = substr($key, 0, 3);
+											echo $short_key;
+											?>
+
+											<!-- <br/> <?= $himpunan->nama_subkriteria ?> -->
+										</th>
 							<?php
 									}
 								}

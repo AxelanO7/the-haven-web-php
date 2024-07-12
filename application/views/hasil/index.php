@@ -14,6 +14,9 @@
 
 	<div class="card-body">
 		<div class="table-responsive">
+			<p>
+				Notes : Job = Job Knowledge, Qua = Quality of Work, Con = Consistency of Work, Sta = Stability, Com = Communication, Dip = Diplomacy and Manners, Jud = Judgement, Sal = Salesmanship, Cus = Customer Relations, Lea = Leadership Skills, Ats = Attitude Toward Supervisors, Atc = Attitude Toward Co-Workers, Ini = Initiative, Att = Attendance, Pun = Punctuality
+			</p>
 			<table class="table table-bordered" width="100%" cellspacing="0">
 				<thead class="bg-haven text-white" style="background-color: #8D9A66">
 					<tr align="center">
@@ -27,9 +30,21 @@
 								$him = $this->Perhitungan_model->get_himpunan_row($id_kriteria);
 								if ($him->id_subkriteria_fuzzy == $himpunan->id_subkriteria_fuzzy) {
 						?>
-									<th class="align-middle">
-										<?= $variabel->nama_kriteria ?><br />
-										<?= $himpunan->nama_subkriteria ?></th>
+										<th class="align-middle">
+											<?php
+											$key = $variabel->nama_kriteria;
+											if ($key == "Attitude Toward Supervisors") {
+												$key = "Ats";
+											}
+											if ($key == "Attitude Toward Co-Workers") {
+												$key = "Atc";
+											}
+											$short_key = substr($key, 0, 3);
+											echo $short_key;
+											?>
+
+											<!-- <br/> <?= $himpunan->nama_subkriteria ?> -->
+										</th>
 						<?php
 								}
 							}
