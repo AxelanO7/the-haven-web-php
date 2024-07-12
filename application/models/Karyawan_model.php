@@ -57,5 +57,11 @@
             $this->db->where('id_karyawan', $id_karyawan);
             $this->db->delete('karyawan');
         }
+
+        public function filterYear($tahun)
+        {
+            $query = $this->db->query("select karyawan.id_karyawan,karyawan.kode_karyawan,karyawan.id_departemen,karyawan.nama_karyawan,karyawan.posisi,karyawan.jenis_kelamin,departemen.nama_departemen,departemen.id_departemen from karyawan inner join departemen on karyawan.id_departemen = departemen.id_departemen where year(tgl_gabung) = '$tahun'");
+            return $query->result();
+        }
     }
     

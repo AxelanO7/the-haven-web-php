@@ -11,6 +11,16 @@ class Appraisal_model extends CI_Model
         return $query->result();
     }
 
+    public function get_appraisals($year)
+    {
+        if ($year != "") {
+            $query = $this->db->query("SELECT Kar.nama_karyawan, Kar.kode_karyawan, App.id_appraisal, App.tgl_pengisian, App.progress, App.development, App.strongest_perform, App.giving_feedback, App.assistance, App.main_strength, App.tobe_improved, App.training_course, App.comment FROM appraisal App INNER JOIN karyawan Kar ON App.id_karyawan = Kar.id_karyawan WHERE YEAR(App.tgl_pengisian) = '$year'");
+        } else {
+            $query = $this->db->query("SELECT Kar.nama_karyawan, Kar.kode_karyawan, App.id_appraisal, App.tgl_pengisian, App.progress, App.development, App.strongest_perform, App.giving_feedback, App.assistance, App.main_strength, App.tobe_improved, App.training_course, App.comment FROM appraisal App INNER JOIN karyawan Kar ON App.id_karyawan = Kar.id_karyawan");
+        }
+        return $query->result();
+    }
+
     public function untuk_tombol($id_karyawan)
     {
         $query = $this->db->query("SELECT * FROM appraisal WHERE id_karyawan='$id_karyawan'");

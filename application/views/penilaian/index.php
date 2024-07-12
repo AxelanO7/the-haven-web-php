@@ -16,6 +16,22 @@
 
     <div class="card-body">
 		<div class="table-responsive">
+			<select name="tahun" id="tahun" class="form-control" style="width: 20%" onchange="window.location.href='<?= base_url('Penilaian/index/'); ?>' + this.value">
+				<option value="">Pilih Tahun</option>
+				<?php
+				if ($this->uri->segment(3) != "") {
+					$year = $this->uri->segment(3);
+				}
+				for ($i = 2022; $i < 2025; $i++) {
+					echo '<option value="' . $i . '"';
+					if ($i == $year) {
+						echo ' selected';
+					}
+					echo '>' . $i . '</option>';
+				}
+				?>
+			</select>
+			<br>
 			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 				<thead class="bg-haven text-white" style="background-color: #8D9A66">
 					<tr align="center">

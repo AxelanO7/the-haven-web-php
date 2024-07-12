@@ -18,6 +18,22 @@
 
 		<div class="card-body">
 			<div class="table-responsive">
+				<select name="tahun" id="tahun" class="form-control" style="width: 20%" onchange="window.location.href='<?= base_url('Appraisal/index/'); ?>' + this.value">
+					<option value="">Pilih Tahun</option>
+					<?php
+					if ($this->uri->segment(3) != "") {
+						$year = $this->uri->segment(3);
+					}
+					for ($i = 2022; $i < 2025; $i++) {
+						echo '<option value="' . $i . '"';
+						if ($i == $year) {
+							echo ' selected';
+						}
+						echo '>' . $i . '</option>';
+					}
+					?>
+				</select>
+				<br>
 				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead class="bg-haven text-white" style="background-color: #8D9A66">
 						<tr align="center">
@@ -30,8 +46,29 @@
 					<tbody>
 						<?php
 						$no = 1;
-						foreach ($list as $data => $Appraisal) {
+						foreach ($apprasials as $data => $appraisal) {
 						?>
+							<tr align="center">
+								<td><?= $no ?></td>
+								<td><?php echo $appraisal->kode_karyawan ?></td>
+								<td><?php echo $appraisal->nama_karyawan ?></td>
+								<?php $cek_tombol = $this->Appraisal_model->untuk_tombol($appraisal->id_karyawan); ?>
+								<td>
+									<?php if ($cek_tombol == 0) { ?>
+										<a href="<?= base_url('Appraisal/create/' . $appraisal->id_karyawan) ?>" class="btn btn-danger btn-sm"><i class="fa fa-plus"></i> Input</a>
+									<?php } else { ?>
+										<a href="<?= base_url('Appraisal/lihat/' . $appraisal->nama_karyawan) ?>" class="btn btn-haven btn-sm"><i class="fa fa-eye"> Lihat</i></a>
+									<?php } ?>
+								</td>
+							</tr>
+						<?php
+							$no++;
+						}
+						?>
+						<!-- <?php
+								$no = 1;
+								foreach ($list as $data => $Appraisal) {
+								?>
 							<tr align="center">
 								<td><?= $no ?></td>
 								<td><?php echo $Appraisal->kode_karyawan ?></td>
@@ -47,9 +84,9 @@
 								</td>
 							</tr>
 						<?php
-							$no++;
-						}
-						?>
+									$no++;
+								}
+						?> -->
 					</tbody>
 				</table>
 			</div>
@@ -521,18 +558,18 @@
 										<a href="<?= base_url('Appraisal/lihat/' . $value->nama_karyawan) ?>" class="btn btn-haven btn-sm"><i class="fa fa-eye"> Lihat</i></a>
 										<!-- <a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="<?= base_url('Karyawan/edit/' . $value->id_karyawan) ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
 								<a  data-toggle="tooltip" data-placement="bottom" title="Hapus Data" href="<?= base_url('Karyawan/destroy/' . $value->id_karyawan) ?>" onclick="return confirm ('Apakah anda yakin untuk meghapus data ini')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> -->
-									</div>
-								</td> 
-							</tr>
-						<?php
+			</div>
+			</td>
+			</tr>
+		<?php
 							$no++;
 						}
-						?>
-					</tbody>
-				</table>
-			</div>
+		?>
+		</tbody>
+		</table>
 		</div>
-		<?php echo form_close() ?>
+	</div>
+	<?php echo form_close() ?>
 	</div>
 <?php endif; ?>
 
