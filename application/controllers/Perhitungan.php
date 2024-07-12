@@ -35,7 +35,7 @@ class Perhitungan extends CI_Controller
                 foreach ($himpunans as $himpunan) {
                     $id_subkriteria_fuzzy = $himpunan->id_subkriteria_fuzzy;
                     $hasil = $this->Perhitungan_model->get_hasil($id_karyawan, $id_kriteria);
-                    if ($hasil->id_subkriteria_fuzzy == $himpunan->id_subkriteria_fuzzy) {
+                    if ($hasil->id_subkriteria_fuzzy == $id_subkriteria_fuzzy) {
                         $tot += $hasil->f;
                     }
                 }
