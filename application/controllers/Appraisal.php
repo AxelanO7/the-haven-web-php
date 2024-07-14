@@ -25,8 +25,8 @@ class Appraisal extends CI_Controller
     public function index()
     {
         $data['page'] = "Appraisal";
-        $data['list'] = $this->Appraisal_model->get_karyawan();
         $yearUrl = $this->uri->segment(3);
+        $data['list'] = $this->Appraisal_model->filter_karyawan_year($yearUrl);
         $data['apprasials'] = $this->Appraisal_model->get_appraisals($yearUrl);
         $data['listhodag'] = $this->Appraisal_model->tampilhodag();
         $data['listhodeng'] = $this->Appraisal_model->tampilhodeng();
@@ -45,7 +45,6 @@ class Appraisal extends CI_Controller
             }
         }
         $data['staff'] = $staff;
-        echo "<script>console.log('Debug Objects: " . json_encode($data['apprasials']) . "' );</script>";
         $this->load->view('Appraisal/index', $data);
     }
 

@@ -44,10 +44,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php
-						$no = 1;
-						foreach ($apprasials as $data => $appraisal) {
-						?>
+						<!-- <?php
+								$no = 1;
+								foreach ($apprasials as $data => $appraisal) {
+								?>
 							<tr align="center">
 								<td><?= $no ?></td>
 								<td><?php echo $appraisal->kode_karyawan ?></td>
@@ -62,13 +62,13 @@
 								</td>
 							</tr>
 						<?php
-							$no++;
-						}
+									$no++;
+								}
+						?> -->
+						<?php
+						$no = 1;
+						foreach ($list as $data => $Appraisal) {
 						?>
-						<!-- <?php
-								$no = 1;
-								foreach ($list as $data => $Appraisal) {
-								?>
 							<tr align="center">
 								<td><?= $no ?></td>
 								<td><?php echo $Appraisal->kode_karyawan ?></td>
@@ -84,9 +84,9 @@
 								</td>
 							</tr>
 						<?php
-									$no++;
-								}
-						?> -->
+							$no++;
+						}
+						?>
 					</tbody>
 				</table>
 			</div>
